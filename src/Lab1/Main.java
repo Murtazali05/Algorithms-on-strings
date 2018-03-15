@@ -19,11 +19,22 @@ public class Main {
         pattern = in.next();
 
         BorderString borderString = new BorderString();
-        ArrayList<Integer> answer = borderString.maxBorderArray(sample, pattern);
+        ArrayList<Integer> answer = borderString.searchSubstring(pattern, sample);
 
-        for (int i = 0; i < answer.size(); i++) {
-            System.out.print((answer.get(i) + 1) + " ");
+        System.out.println("METHOD ARRAYS BORDER");
+        if (answer.isEmpty())
+            System.out.println("No occurrences of substring in string found!");
+        else {
+            System.out.print("Positions of occurrences:");
+            for (int i = 0; i < answer.size(); i++) {
+                System.out.print(" " + answer.get(i));
+            }
         }
     }
 }
+/*
+* Примеры:
+* abaabaab
+* aba
+* */
 
