@@ -1,5 +1,8 @@
 package Lab1;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /*
 * Рабадангаджиев М.М. 8 группа
 *
@@ -9,7 +12,18 @@ package Lab1;
 * */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Algorithms!");
+        Scanner in = new Scanner(System.in);
+
+        String sample, pattern;
+        sample = in.next();
+        pattern = in.next();
+
+        BorderString borderString = new BorderString();
+        ArrayList<Integer> answer = borderString.maxBorderArray(sample, pattern);
+
+        for (int i = 0; i < answer.size(); i++) {
+            System.out.print((answer.get(i) + 1) + " ");
+        }
     }
 }
 
