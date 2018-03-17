@@ -3,7 +3,7 @@ package Lab1;
 import java.util.ArrayList;
 
 public class BorderString {
-    ArrayList<Integer> border;
+    private ArrayList<Integer> border;
 
     public BorderString() {
         border = new ArrayList<Integer>();
