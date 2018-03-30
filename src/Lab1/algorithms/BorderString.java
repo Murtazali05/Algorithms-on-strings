@@ -1,12 +1,12 @@
-package Lab1;
+package Lab1.algorithms;
 
 import java.util.ArrayList;
 
 public class BorderString {
-    private ArrayList<Integer> border;
+    private ArrayList<Integer> borders;
 
     public BorderString() {
-        border = new ArrayList<Integer>();
+        borders = new ArrayList<Integer>();
     }
 
     private String joinRows(String s1, String s2) {
@@ -16,17 +16,17 @@ public class BorderString {
     private void maxBorderArray(String str) {
         int n = str.length();
 
-        border.add(-1);
+        borders.add(-1);
 
         for (int i = 0; i < (n - 1); i++) {
-            int tmp = border.get(i);
+            int tmp = borders.get(i);
 
-            while ((tmp > -1) && (str.charAt(i + 1) != str.charAt(tmp + 1))) tmp = border.get(tmp);
+            while ((tmp > -1) && (str.charAt(i + 1) != str.charAt(tmp + 1))) tmp = borders.get(tmp);
 
             if (str.charAt(i + 1) == str.charAt(tmp + 1))
-                border.add(i + 1, tmp + 1);
+                borders.add(i + 1, tmp + 1);
             else
-                border.add(i + 1, -1);
+                borders.add(i + 1, -1);
         }
 
     }
@@ -40,8 +40,8 @@ public class BorderString {
         int lengthPattern = pattern.length();
         ArrayList<Integer> result = new ArrayList<>();
 
-        for (int i = 0; i < border.size(); i++) {
-            if ((border.get(i) + 1) == lengthPattern)
+        for (int i = 0; i < borders.size(); i++) {
+            if ((borders.get(i) + 1) == lengthPattern)
                 result.add(i - lengthPattern - lengthPattern + 1);
         }
 

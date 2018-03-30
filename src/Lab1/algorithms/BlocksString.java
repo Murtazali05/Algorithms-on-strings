@@ -1,4 +1,4 @@
-package Lab1;
+package Lab1.algorithms;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class BlocksString {
         int n = str.length();
         int left = 0;
         int right = 0;
-        block.add(0, 0);
+        block.add(0);
         for (int i = 1; i < n; i++) {
             block.add(i, 0);
             if (i > right) {
