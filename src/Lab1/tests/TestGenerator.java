@@ -9,7 +9,7 @@ public class TestGenerator {
         StringBuilder randString = new StringBuilder();
         Random random = new Random();
 
-        for (int i = 0; i<length; i++){
+        for (long i = 0; i<length; i++){
             randString.append(symbols.charAt(random.nextInt(symbols.length())));
         }
 
@@ -18,7 +18,7 @@ public class TestGenerator {
 
     public static String generateTest(long length, char symbol){
         StringBuilder line = new StringBuilder();
-        for (int i = 0; i < length; i++)
+        for (long i = 0; i < length; i++)
             line.append(symbol);
 
         return line.toString();

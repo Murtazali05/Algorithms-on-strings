@@ -24,7 +24,7 @@ public class Main {
         finish_time = System.currentTimeMillis();
 
         System.out.println("\nMETHOD ARRAYS BORDER");
-        System.out.println("Lead time: " + (finish_time - start_time));
+        System.out.println("Lead time: " + (finish_time - start_time) + " ms");
         if (answer.isEmpty())
             System.out.println("No occurrences of substring in string found!");
         else {
@@ -38,13 +38,14 @@ public class Main {
             System.out.println();
         }
 
+        answer = null;
         BlocksString blocksString = new BlocksString();
         start_time = System.currentTimeMillis();
         answer = blocksString.searchSubstring(pattern, sample);
         finish_time = System.currentTimeMillis();
 
         System.out.println("\nMETHOD ARRAYS BLOCKS");
-        System.out.println("Lead time: " + (finish_time - start_time));
+        System.out.println("Lead time: " + (finish_time - start_time) + " ms");
         if (answer.isEmpty())
             System.out.println("No occurrences of substring in string found!");
         else {
@@ -62,6 +63,7 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         String sample, pattern;
+        long lengthPattern, lengthText;
 
         sample = "abbabaabbaababba";
         pattern = "ba";
@@ -75,30 +77,35 @@ public class Main {
         System.out.println("Pattern: " + pattern);
         run(pattern, sample);
 
-        System.out.print("\n\nEnter the length of the text from the same characters: ");
-        sample = TestGenerator.generateTest(in.nextLong(), 'a');
-        System.out.print("Enter the length of the pattern from the same characters: ");
-        pattern = TestGenerator.generateTest(in.nextLong(), 'a');
+        lengthText = 20000000;
+        lengthPattern = 1000000;
+        System.out.println("\n\nThe length of the text from the same characters: " + lengthText);
+        sample = TestGenerator.generateTest(lengthText, 'a');
+        System.out.println("The length of the pattern from the same characters: " + lengthPattern);
+        pattern = TestGenerator.generateTest(lengthPattern, 'a');
         run(pattern, sample);
 
-        System.out.print("\n\nEnter the length of the text from the same characters (a): ");
-        sample = TestGenerator.generateTest(in.nextLong(), 'a');
+        lengthText = 2000000;
+        System.out.println("\n\nThe length of the text from the same characters (a): " + lengthText);
+        sample = TestGenerator.generateTest(lengthText, 'a');
         pattern = "aaaabaa";
         System.out.println("Pattern: " + pattern);
         run(pattern, sample);
 
-        System.out.print("\n\nEnter the length of the text from the same characters (a) with the (b) symbol in the middle: ");
-        long dim = in.nextLong();
-        sample = TestGenerator.generateTest(dim, 'a', dim/2, 'b');
+        lengthText = 2000000;
+        System.out.println("\n\nThe length of the text from the same characters (a) with the (b) symbol in the middle: " + lengthText);
+        sample = TestGenerator.generateTest(lengthText, 'a', lengthText/2, 'b');
         pattern = "aaaaaaa";
-        if (dim < 10000) System.out.println("Text: " + sample);
+        if (lengthText < 10000) System.out.println("Text: " + sample);
         System.out.println("Pattern: " + pattern);
         run(pattern, sample);
 
-        System.out.print("\n\nEnter the length of the DNA for the text: ");
-        sample = TestGenerator.generatorDNA(in.nextLong());
-        System.out.print("Enter the length of the DNA for the pattern: ");
-        pattern = TestGenerator.generatorDNA(in.nextLong());
+        lengthText = 10000000;
+        lengthPattern = 9;
+        System.out.println("\n\nThe length of the DNA for the text: " + lengthText);
+        sample = TestGenerator.generatorDNA(lengthText);
+        System.out.print("The length of the DNA for the pattern: " + lengthPattern);
+        pattern = TestGenerator.generatorDNA(lengthPattern);
         run(pattern, sample);
 
     }
