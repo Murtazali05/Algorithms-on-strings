@@ -53,8 +53,8 @@ public class Main {
         System.out.println("Pattern: " + pattern);
         run(pattern, sample);
 
-        lengthText = 200000;
-        lengthPattern = 1000;
+        lengthText = 2000000;
+        lengthPattern = 100000;
         System.out.println("\n\nThe length of the text from the same characters: " + lengthText);
         sample = TestGenerator.generateTest(lengthText, 'a');
         System.out.println("The length of the pattern from the same characters: " + lengthPattern);
