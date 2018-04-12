@@ -2,19 +2,18 @@ package Lab3;
 
 import Lab1.tests.TestGenerator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     private static void run(String pattern, String sample) {
         long start_time, finish_time;
-        StringSearchBM stringSearchBM = new StringSearchBM();
+        BadSymbolBM badSymbolBM = new BadSymbolBM();
         start_time = System.currentTimeMillis();
-        List<Integer> answer = stringSearchBM.badSymbolJumpBM(pattern, sample);
+        List<Integer> answer = badSymbolBM.extendBadSymbolJumpBM(pattern, sample);
         finish_time = System.currentTimeMillis();
 
-        System.out.println("\nMETHOD Simple symbol");
+        System.out.println("\nMETHOD Bad symbol");
         System.out.println("Lead time: " + (finish_time - start_time) + " ms");
         if (answer.isEmpty())
             System.out.println("No occurrences of substring in string found!");
@@ -30,11 +29,12 @@ public class Main {
         }
 
         answer = null;
+        GoodSuffixBM goodSuffixBM = new GoodSuffixBM();
         start_time = System.currentTimeMillis();
-        answer = stringSearchBM.extendBdSymbolJumpBM(pattern, sample);
+        answer = goodSuffixBM.goodSuffixBM(pattern, sample);
         finish_time = System.currentTimeMillis();
 
-        System.out.println("\nMETHOD Extend Simple symbol");
+        System.out.println("\nMETHOD Good Suffix");
         System.out.println("Lead time: " + (finish_time - start_time) + " ms");
         if (answer.isEmpty())
             System.out.println("No occurrences of substring in string found!");
@@ -57,7 +57,6 @@ public class Main {
         String sample, pattern;
         long lengthPattern, lengthText;
 
-
         sample = "abbabaabbaababba";
         pattern = "ba";
         System.out.println("\nText: " + sample);
@@ -67,12 +66,6 @@ public class Main {
         sample = "abababababaaba";
         pattern = "aba";
         System.out.println("\nText: " + sample);
-        System.out.println("Pattern: " + pattern);
-        run(pattern, sample);
-
-        sample = "aaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-        pattern = "aaa";
-        System.out.println("Text: " + sample);
         System.out.println("Pattern: " + pattern);
         run(pattern, sample);
 

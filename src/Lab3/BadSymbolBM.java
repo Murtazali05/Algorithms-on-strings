@@ -1,9 +1,10 @@
 package Lab3;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-public class StringSearchBM {
+public class BadSymbolBM {
 
     private int[] maxBorderArray(String str) {
         int n = str.length();
@@ -38,7 +39,7 @@ public class StringSearchBM {
         return bs;
     }
 
-    public List<Integer> badSymbolBM(String pattern, String sample){
+    private List<Integer> badSymbolBM(String pattern, String sample){
         int n = sample.length();
         int m = pattern.length();
 
@@ -90,15 +91,47 @@ public class StringSearchBM {
         }
 
         return answer;
-
     }
 
-    public List<Integer> extendBdSymbolJumpBM(String pattern, String sample) {
+    private LinkedList<Integer>[] buildBadSymbolMatrix(String pattern, String sample){
+        int ASCII = 127;
+        int m = pattern.length();
+
+
+        LinkedList<Integer> bs[] = new LinkedList[ASCII]; // для каждого символа список позиций вхождения в паттерн
+
+        for (int i = 0; i<ASCII; i++) bs[i] = new LinkedList<>();
+
+        for (int i = m - 1; i>=0; i--)
+            bs[(int)pattern.charAt(i)].add(i);
+
+        return bs;
+    }
+
+    private int shift(LinkedList<Integer>[] p_list, char bad_char, int bad_pos) {
+        if (bad_pos < 0) return 1;
+        int r_shift = -1;
+
+        List<Integer> bad_list = p_list[(int)bad_char];
+
+        if (!bad_list.isEmpty()){
+            for (int item : bad_list){
+                if (item < bad_pos){
+                    r_shift = item;
+                    break;
+                }
+            }
+        }
+
+        return bad_pos - r_shift;
+    }
+
+    public List<Integer> extendBadSymbolJumpBM(String pattern, String sample) {
         int n = sample.length();
         int m = pattern.length();
 
         int borderArray[] = maxBorderArray(pattern);
-        ArrayList<Integer> badSymbolArray[] = buildBadSymbolMatrix(pattern, sample);
+        LinkedList<Integer> badSymbolArray[] = buildBadSymbolMatrix(pattern, sample);
 
         List<Integer> answer = new ArrayList<>();
 
@@ -121,39 +154,6 @@ public class StringSearchBM {
 
         return answer;
 
-    }
-
-    int shift(ArrayList<Integer>[] p_list, char bad_char, int bad_pos) {
-        if (bad_pos < 0) return 1;
-        int r_shift = -1;
-
-        ArrayList<Integer> bad_list = p_list[(int)bad_char];
-
-        if (!bad_list.isEmpty()){
-            for (int item : bad_list){
-                if (item < bad_pos){
-                    r_shift = item;
-                    break;
-                }
-            }
-        }
-
-        return bad_pos - r_shift;
-    }
-
-    private ArrayList<Integer>[] buildBadSymbolMatrix(String pattern, String sample){
-        int ASCII = 127;
-        int m = pattern.length();
-
-
-        ArrayList<Integer> bs[] = new ArrayList[ASCII];
-
-        for (int i = 0; i<ASCII; i++) bs[i] = new ArrayList<Integer>();
-
-        for (int i = m - 1; i>=0; i--)
-            bs[(int)pattern.charAt(i)].add(i);
-
-        return bs;
     }
 
 }
