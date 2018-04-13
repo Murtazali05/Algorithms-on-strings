@@ -1,29 +1,19 @@
-package Lab1;
+package Lab2;
 
-import Lab1.algorithms.BlocksString;
-import Lab1.algorithms.BorderString;
 import Lab1.tests.TestGenerator;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*
-* Рабадангаджиев М.М. 8 группа
-*
-* Разработать программу поиска паттерна P в тексте T с использованием метода вычисления массива граней префиксов
-* --//---  с использованием метода вычисления массива блоков
-* Экспериментально оценить время работы для предельно больщих строк
-* */
 public class Main {
-
     private static void run(String pattern, String sample) {
         long start_time, finish_time;
-        BorderString borderString = new BorderString();
+        StringSearchKMP stringSearchKMP = new StringSearchKMP();
         start_time = System.currentTimeMillis();
-        ArrayList<Integer> answer = borderString.searchSubstring(pattern, sample);
+        ArrayList<Integer> answer = stringSearchKMP.KMP(pattern, sample);
         finish_time = System.currentTimeMillis();
 
-        System.out.println("\nMETHOD ARRAYS BORDER");
+        System.out.println("\nMETHOD KMP");
         System.out.println("Lead time: " + (finish_time - start_time) + " ms");
         if (answer.isEmpty())
             System.out.println("No occurrences of substring in string found!");
@@ -39,12 +29,11 @@ public class Main {
         }
 
         answer = null;
-        BlocksString blocksString = new BlocksString();
         start_time = System.currentTimeMillis();
-        answer = blocksString.searchSubstring(pattern, sample);
+        answer = stringSearchKMP.modifiedKMP(pattern, sample);
         finish_time = System.currentTimeMillis();
 
-        System.out.println("\nMETHOD ARRAYS BLOCKS");
+        System.out.println("\nMETHOD Modified KMP");
         System.out.println("Lead time: " + (finish_time - start_time) + " ms");
         if (answer.isEmpty())
             System.out.println("No occurrences of substring in string found!");
@@ -56,7 +45,29 @@ public class Main {
                     System.out.print(" " + answer.get(i));
                 }
             }
+            System.out.println();
         }
+
+        answer = null;
+        start_time = System.currentTimeMillis();
+        answer = stringSearchKMP.onlineModifiedKMP(pattern, sample);
+        finish_time = System.currentTimeMillis();
+
+        System.out.println("\nMETHOD Online Modified KMP");
+        System.out.println("Lead time: " + (finish_time - start_time) + " ms");
+        if (answer.isEmpty())
+            System.out.println("No occurrences of substring in string found!");
+        else {
+            System.out.println("Number of occurrences: " + answer.size());
+            if (answer.size() < 1000) {
+                System.out.print("Positions of occurrences: ");
+                for (int i = 0; i < answer.size(); i++) {
+                    System.out.print(" " + answer.get(i));
+                }
+            }
+            System.out.println();
+        }
+
     }
 
     public static void main(String[] args) {
@@ -64,6 +75,7 @@ public class Main {
 
         String sample, pattern;
         long lengthPattern, lengthText;
+
 
         sample = "abbabaabbaababba";
         pattern = "ba";
@@ -77,8 +89,9 @@ public class Main {
         System.out.println("Pattern: " + pattern);
         run(pattern, sample);
 
+
         lengthText = 20000000;
-        lengthPattern = 1000000;
+        lengthPattern = 100000;
         System.out.println("\n\nThe length of the text from the same characters: " + lengthText);
         sample = TestGenerator.generateTest(lengthText, 'a');
         System.out.println("The length of the pattern from the same characters: " + lengthPattern);
@@ -86,7 +99,7 @@ public class Main {
         run(pattern, sample);
 
         lengthText = 2000000;
-        System.out.println("\n\nThe length of the text from the same characters (a): " + lengthText);
+        System.out.println("\nThe length of the text from the same characters (a): " + lengthText);
         sample = TestGenerator.generateTest(lengthText, 'a');
         pattern = "aaaabaa";
         System.out.println("Pattern: " + pattern);
