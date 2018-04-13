@@ -81,7 +81,7 @@ public class Main {
         lengthText = 2000000;
         System.out.println("\nThe length of the text from the same characters (a): " + lengthText);
         sample = TestGenerator.generateTest(lengthText, 'a');
-        pattern = "aaaabaa";
+        pattern = "baaaaaa";
         System.out.println("Pattern: " + pattern);
         run(pattern, sample);
 
