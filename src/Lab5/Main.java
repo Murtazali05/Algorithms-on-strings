@@ -34,8 +34,6 @@ public class Main {
         String sample, pattern;
         long lengthPattern, lengthText;
 
-        System.out.println(26 >> 1);
-
         sample = "abbabaabbaababba";
         pattern = "ba";
         System.out.println("\nText: " + sample);

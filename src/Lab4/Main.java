@@ -1,6 +1,7 @@
 package Lab4;
 
 import Lab1.tests.TestGenerator;
+import Lab5.StringSearchSA;
 
 import java.util.List;
 
@@ -14,6 +15,26 @@ public class Main {
         finish_time = System.currentTimeMillis();
 
         System.out.println("\nKARP-RABIN");
+        System.out.println("Lead time: " + (finish_time - start_time) + " ms");
+        if (answer.isEmpty())
+            System.out.println("No occurrences of substring in string found!");
+        else {
+            System.out.println("Number of occurrences: " + answer.size());
+            if (answer.size() < 1000) {
+                System.out.print("Positions of occurrences: ");
+                for (int i = 0; i < answer.size(); i++) {
+                    System.out.print(" " + answer.get(i));
+                }
+            }
+            System.out.println();
+        }
+
+        StringSearchSA stringSearchSA = new StringSearchSA();
+        start_time = System.currentTimeMillis();
+        answer = stringSearchSA.search(pattern, sample);
+        finish_time = System.currentTimeMillis();
+
+        System.out.println("\nSHIFT-AND");
         System.out.println("Lead time: " + (finish_time - start_time) + " ms");
         if (answer.isEmpty())
             System.out.println("No occurrences of substring in string found!");
@@ -47,14 +68,8 @@ public class Main {
         System.out.println("Pattern: " + pattern);
         run(pattern, sample);
 
-        sample = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-        pattern = "aaa";
-        System.out.println("\nText: " + sample);
-        System.out.println("Pattern: " + pattern);
-        run(pattern, sample);
-
         lengthText = 2000000;
-        lengthPattern = 100000;
+        lengthPattern = 10;
         System.out.println("\n\nThe length of the text from the same characters: " + lengthText);
         sample = TestGenerator.generateTest(lengthText, 'a');
         System.out.println("The length of the pattern from the same characters: " + lengthPattern);
@@ -68,7 +83,7 @@ public class Main {
         System.out.println("Pattern: " + pattern);
         run(pattern, sample);
 
-        lengthText = 2000000;
+        lengthText = 200000;
         System.out.println("\n\nThe length of the text from the same characters (a) with the (b) symbol in the middle: " + lengthText);
         sample = TestGenerator.generateTest(lengthText, 'a', lengthText/2, 'b');
         pattern = "aaaaaaa";

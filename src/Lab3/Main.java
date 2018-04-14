@@ -1,6 +1,7 @@
 package Lab3;
 
 import Lab1.tests.TestGenerator;
+import Lab2.StringSearchKMP;
 
 import java.util.List;
 import java.util.Scanner;
@@ -28,7 +29,7 @@ public class Main {
             System.out.println();
         }
 
-        answer = null;
+
         GoodSuffixBM goodSuffixBM = new GoodSuffixBM();
         start_time = System.currentTimeMillis();
         answer = goodSuffixBM.goodSuffixBM(pattern, sample);
@@ -49,10 +50,30 @@ public class Main {
             System.out.println();
         }
 
+
+        StringSearchKMP stringSearchKMP = new StringSearchKMP();
+        start_time = System.currentTimeMillis();
+        answer = stringSearchKMP.modifiedKMP(pattern, sample);
+        finish_time = System.currentTimeMillis();
+
+        System.out.println("\nMETHOD Modified KMP");
+        System.out.println("Lead time: " + (finish_time - start_time) + " ms");
+        if (answer.isEmpty())
+            System.out.println("No occurrences of substring in string found!");
+        else {
+            System.out.println("Number of occurrences: " + answer.size());
+            if (answer.size() < 1000) {
+                System.out.print("Positions of occurrences: ");
+                for (int i = 0; i < answer.size(); i++) {
+                    System.out.print(" " + answer.get(i));
+                }
+            }
+            System.out.println();
+        }
+
     }
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
 
         String sample, pattern;
         long lengthPattern, lengthText;

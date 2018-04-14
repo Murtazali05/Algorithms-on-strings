@@ -28,7 +28,7 @@ public class Main {
             System.out.println();
         }
 
-        answer = null;
+
         start_time = System.currentTimeMillis();
         answer = stringSearchKMP.modifiedKMP(pattern, sample);
         finish_time = System.currentTimeMillis();
@@ -48,7 +48,7 @@ public class Main {
             System.out.println();
         }
 
-        answer = null;
+
         start_time = System.currentTimeMillis();
         answer = stringSearchKMP.onlineModifiedKMP(pattern, sample);
         finish_time = System.currentTimeMillis();
@@ -71,8 +71,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-
         String sample, pattern;
         long lengthPattern, lengthText;
 
@@ -90,7 +88,7 @@ public class Main {
         run(pattern, sample);
 
 
-        lengthText = 20000000;
+        lengthText = 2000000;
         lengthPattern = 100000;
         System.out.println("\n\nThe length of the text from the same characters: " + lengthText);
         sample = TestGenerator.generateTest(lengthText, 'a');

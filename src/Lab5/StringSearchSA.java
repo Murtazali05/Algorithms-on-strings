@@ -27,7 +27,7 @@ public class StringSearchSA {
         for (int i = 0; i < n; i++) {
             M = (M >> 1 | uHigh) & vector[(int) sample.charAt(i)];
 
-            if ((M & 1) > 0)
+            if ((M & 1) != 0)
                 answer.add(i - m + 2);
         }
 

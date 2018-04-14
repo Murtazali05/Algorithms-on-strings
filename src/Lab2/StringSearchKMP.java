@@ -8,6 +8,7 @@ public class StringSearchKMP {
     private void maxBorderArray(String str) {
         int n = str.length();
 
+        borderArray = new int[n];
         borderArray[0] = -1;
 
         for (int i = 0; i < (n - 1); i++) {
@@ -29,7 +30,6 @@ public class StringSearchKMP {
         int n = sample.length();
         int m = pattern.length();
 
-        borderArray = new int[m];
         maxBorderArray(pattern);
 
         int indexP = 0;
@@ -50,6 +50,7 @@ public class StringSearchKMP {
     }
 
     private int[] modifyBorderArray(String str) {
+        maxBorderArray(str);
         int m = str.length();
         int brs[] = new int[m];
 
