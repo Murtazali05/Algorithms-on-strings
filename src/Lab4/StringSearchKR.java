@@ -46,7 +46,7 @@ public class StringSearchKR {
 
         for (int j = 0; j < n - m; j++) {
 
-            if (patternHash == sampleHash/* && compare(pattern, sample, j)*/)
+            if (patternHash == sampleHash && compare(pattern, sample, j))
                 answer.add(j + 1);
 
             sampleHash = REHASH(sampleHash, factor, sample.charAt(j), sample.charAt(j + m));
@@ -56,7 +56,7 @@ public class StringSearchKR {
 
         }
 
-        if (patternHash == sampleHash/* && compare(pattern, sample, n - m)*/) {
+        if (patternHash == sampleHash && compare(pattern, sample, n - m)) {
             answer.add(n - m + 1);
         }
 
